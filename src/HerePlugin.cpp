@@ -28,6 +28,13 @@ int main(int argc, char *argv[]) {
         networkInteraction("https://example.com/upload", "data to upload");
 
         // download something
+        // nlohmann::json json_data = get_json_from_url(LANDMARKS_GET_URL);
+
+        // get info
+        cout << "Getting info data..." << endl;
+        nlohmann::json info_data = get_json_from_url(INFO_URL);
+        cout << "Downloaded info data: " << info_data.at("ssid").get<std::string>() << endl;
+        cout << "Downloaded info data: " << info_data.at("api_version").get<std::string>() << endl;
 
         // get map features
 
