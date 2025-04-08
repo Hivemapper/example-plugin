@@ -10,6 +10,8 @@
 
 #include <Eigen/Dense>
 
+#include "FileApi.h"
+#include "PositionApi.h"
 #include "LandmarksApi.h"
 
 #endif // HEREPLUGIN_H

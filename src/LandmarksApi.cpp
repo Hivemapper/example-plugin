@@ -1,21 +1,11 @@
-#include "LandmarksApi.h"
-#include <cstdlib>
+
 #include <string>
+
+#include "LandmarksApi.h"
 
 using namespace std;
 
-string get_env_or_default(const char* env_var, const string& default_value) {
-    const char* value = std::getenv(env_var);
-    return (value == nullptr) ? default_value : string(value);
-}
 
-string DASHCAM_HOST = get_env_or_default("DASHCAM_HOST", "192.168.0.10");
-string DASHCAM_PORT = get_env_or_default("DASHCAM_PORT", "5000");
-
-string LANDMARKS_GET_URL = "http://" + DASHCAM_HOST + ":" + DASHCAM_PORT + "/api/1/landmarks";
-string INFO_URL = "http://" + DASHCAM_HOST + ":" + DASHCAM_PORT + "/api/1/info/";
-string LANDMARKS_POST_URL = "https://beemaps....";
-string STORAGE_DIR = "/data/landmarks_plugin/";
 
 /* @brief Get the latest landmark
 *
@@ -24,7 +14,8 @@ string STORAGE_DIR = "/data/landmarks_plugin/";
 *   @return A JSON object containing the latest landmark data.
 */
 nlohmann::json get_latest_landmark(){
-    string request = LANDMARKS_GET_URL + "/latest";
+    string landmarks_url = "http://" + dashcam::DASHCAM_HOST + ":" + dashcam::DASHCAM_PORT + "/api/1/landmarks";
+    string request = landmarks_url + "/latest";
     return get_json_from_url(request);
 }
 
@@ -37,7 +28,8 @@ nlohmann::json get_latest_landmark(){
 *   @return A JSON object containing the last n landmarks.
 */
 nlohmann::json get_last_n_landmarks(int n){
-    string request = LANDMARKS_GET_URL + "/last/" + to_string(n);
+    string landmarks_url = "http://" + dashcam::DASHCAM_HOST + ":" + dashcam::DASHCAM_PORT + "/api/1/landmarks";
+    string request = landmarks_url + "/last/" + to_string(n);
     return get_json_from_url(request);
 }
 
@@ -51,7 +43,8 @@ nlohmann::json get_last_n_landmarks(int n){
 *   @return A JSON object containing the landmark data.
 */
 nlohmann::json get_landmarks_by_timestamp(long since_timestamp, long until_timestamp){
-    string request = LANDMARKS_GET_URL;
+    string landmarks_url = "http://" + dashcam::DASHCAM_HOST + ":" + dashcam::DASHCAM_PORT + "/api/1/landmarks";
+    string request = landmarks_url;
     if (since_timestamp != -1){
         request += "?since=" + to_string(since_timestamp);
     }
@@ -74,45 +67,7 @@ nlohmann::json get_landmarks_by_timestamp(long since_timestamp, long until_times
 *   @return A JSON object containing the landmark data.
 */
 nlohmann::json get_landmarks_after_id(long id){
-    string request = LANDMARKS_GET_URL + "/" + to_string(id);
+    string landmarks_url = "http://" + dashcam::DASHCAM_HOST + ":" + dashcam::DASHCAM_PORT + "/api/1/landmarks";
+    string request = landmarks_url + "/" + to_string(id);
     return get_json_from_url(request);
 }
-
-// Helper for writing curl response into a string
-size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
-    ((std::string*)userp)->append((char*)contents, size * nmemb);
-    return size * nmemb;
-}
-
-// Main function to GET JSON from a URL
-nlohmann::json get_json_from_url(const std::string& url) {
-    CURL* curl;
-    CURLcode res;
-    std::string readBuffer;
-
-    curl = curl_easy_init();
-    if (curl) {
-        curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-
-        // Set the write function and buffer
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
-
-        // Optional: follow redirects
-        curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
-
-        res = curl_easy_perform(curl);
-        curl_easy_cleanup(curl);
-
-        if (res != CURLE_OK) {
-            throw std::runtime_error("curl_easy_perform() failed: " + std::string(curl_easy_strerror(res)));
-        }
-    } else {
-        throw std::runtime_error("Failed to initialize CURL");
-    }
-
-    // cout << "Downloaded JSON data: " << readBuffer << endl;
-
-    return nlohmann::json::parse(readBuffer);
-}
-

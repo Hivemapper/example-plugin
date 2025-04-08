@@ -6,8 +6,11 @@ find_package(CURL REQUIRED)
 
 # add HerePlugin executable
 add_executable(HerePlugin
-    LandmarksApi.cpp
     HerePlugin.cpp
+    PositionApi.cpp
+    LandmarksApi.cpp
+    FileApi.cpp
+    Utils.cpp
 )
 
 # add include directory
