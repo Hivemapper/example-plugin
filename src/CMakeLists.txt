@@ -6,7 +6,7 @@ find_package(CURL REQUIRED)
 
 # add HerePlugin executable
 add_executable(HerePlugin
-    HivemapperApi.cpp
+    LandmarksApi.cpp
     HerePlugin.cpp
 )
 

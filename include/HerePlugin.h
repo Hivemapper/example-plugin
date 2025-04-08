@@ -10,6 +10,6 @@
 
 #include <Eigen/Dense>
 
-#include "HivemapperApi.h"
+#include "LandmarksApi.h"
 
 #endif // HEREPLUGIN_H
