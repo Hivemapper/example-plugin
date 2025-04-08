@@ -4,11 +4,11 @@ from flask import Flask, jsonify, request
 app = Flask(__name__)
 
 landmarks_data = [
-    {"rowid": 595, "class_label": "Landmark A", "lat": 12.34, "lon": 56.78, "ts": 1672531197 },
-    {"rowid": 596, "class_label": "Landmark B", "lat": 87.65, "lon": 43.21, "ts": 1672531199 },
-    {"rowid": 597, "class_label": "Landmark C", "lat": 11.11, "lon": 22.22, "ts": 1672531199 },
-    {"rowid": 598, "class_label": "Landmark D", "lat": 33.33, "lon": 44.44, "ts": 1672531200 },
-    {"rowid": 599, "class_label": "Landmark E", "lat": 55.55, "lon": 66.66, "ts": 1672531201 },
+    {"id": 595, "class_label": "Landmark A", "lat": 12.34, "lon": 56.78, "ts": 1672531197 },
+    {"id": 596, "class_label": "Landmark B", "lat": 87.65, "lon": 43.21, "ts": 1672531199 },
+    {"id": 597, "class_label": "Landmark C", "lat": 11.11, "lon": 22.22, "ts": 1672531199 },
+    {"id": 598, "class_label": "Landmark D", "lat": 33.33, "lon": 44.44, "ts": 1672531200 },
+    {"id": 599, "class_label": "Landmark E", "lat": 55.55, "lon": 66.66, "ts": 1672531201 },
 ]
 
 info_data = {
@@ -44,7 +44,7 @@ def get_landmarks():
 
 @app.route('/api/1/landmarks/<int:id>', methods=['GET'])
 def get_landmarks_after_id(id):
-    filtered = [lm for lm in landmarks_data if lm["rowid"] >= id]
+    filtered = [lm for lm in landmarks_data if lm["id"] >= id]
     return jsonify(filtered)
 
 @app.route('/api/1/info/', methods=['GET'])

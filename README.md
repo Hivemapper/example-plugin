@@ -36,7 +36,9 @@ This command will:
 
 #### Production Mode
 
-To run the container in normal (production) mode (without starting the test server), execute:
+Production Mode requires your local machine to be connected to WiFi network of Bee device.
+Once connected,
+to run the container in normal (production) mode, execute:
 
 ```bash
 docker run --rm here-plugin
