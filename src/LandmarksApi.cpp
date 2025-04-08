@@ -1,13 +1,19 @@
-/* Landmarks Api */
-
 #include "LandmarksApi.h"
+#include <cstdlib>
+#include <string>
 
 using namespace std;
 
-// string LANDMARKS_GET_URL = "http://192.168.0.10:5000/api/1/landmarks/";
-string LANDMARKS_GET_URL = "http://192.168.197.55:5000/api/1/landmarks";
-// string INFO_URL = "http://192.168.0.10:5000/api/1/info/";
-string INFO_URL = "http://192.168.197.55:5000/api/1/info/";
+string get_env_or_default(const char* env_var, const string& default_value) {
+    const char* value = std::getenv(env_var);
+    return (value == nullptr) ? default_value : string(value);
+}
+
+string DASHCAM_HOST = get_env_or_default("DASHCAM_HOST", "192.168.0.10");
+string DASHCAM_PORT = get_env_or_default("DASHCAM_PORT", "5000");
+
+string LANDMARKS_GET_URL = "http://" + DASHCAM_HOST + ":" + DASHCAM_PORT + "/api/1/landmarks";
+string INFO_URL = "http://" + DASHCAM_HOST + ":" + DASHCAM_PORT + "/api/1/info/";
 string LANDMARKS_POST_URL = "https://beemaps....";
 string STORAGE_DIR = "/data/landmarks_plugin/";
 
