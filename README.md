@@ -1,6 +1,6 @@
-# HERE Plugin
+# Example Plugin
 
-The HERE Plugin is a C++ application designed to interact with specific REST API endpoints. It includes Docker support so you can easily run it in an isolated environment and, if needed, enable a test mode that starts a mock HTTP server returning preset JSON responses.
+The Example Plugin is a C++ application designed to interact with specific REST API endpoints. It includes Docker support so you can easily run it in an isolated environment and, if needed, enable a test mode that starts a mock HTTP server returning preset JSON responses.
 
 ## Features
 
@@ -21,7 +21,7 @@ The HERE Plugin is a C++ application designed to interact with specific REST API
 Open a terminal in your repository directory and run:
 
 ```bash
-docker build -t here-plugin .
+docker build -t example-plugin .
 ```
 
 This command will:
@@ -41,7 +41,7 @@ Once connected,
 to run the container in normal (production) mode, execute:
 
 ```bash
-docker run --rm here-plugin
+docker run --rm example-plugin
 ```
 
 The application will use default environment variables for its API endpoints.
@@ -55,13 +55,13 @@ Test mode starts an embedded Python Flask test server that mocks your API endpoi
 To run in test mode, execute:
 
 ```bash
-docker run --rm -e TEST_MODE=1 -p <HOST_PORT>:9000 here-plugin
+docker run --rm -e TEST_MODE=1 -p <HOST_PORT>:9000 example-plugin
 ```
 
 Replace `<HOST_PORT>` with an available port on your host (for example, `9001` if `9000` is in use). For example:
 
 ```bash
-docker run --rm -e TEST_MODE=1 -p 9001:9000 here-plugin
+docker run --rm -e TEST_MODE=1 -p 9001:9000 example-plugin
 ```
 
 This command does the following:
@@ -100,7 +100,7 @@ Replace `<container_id>` with the actual ID retrieved from `docker ps -a`.
 To inspect the container’s state, you can override the entrypoint temporarily:
 
 ```bash
-docker run -it --entrypoint bash here-plugin
+docker run -it --entrypoint bash example-plugin
 ```
 
 The python test server and plugin will not run automatically with this command. You will need to run them manually

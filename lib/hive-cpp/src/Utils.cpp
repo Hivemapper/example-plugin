@@ -10,8 +10,8 @@ string get_env_or_default(const char* env_var, const string& default_value) {
 }
 
 namespace dashcam {
-    const string DASHCAM_HOST = get_env_or_default("DASHCAM_HOST", "192.168.0.10");
-    // const string DASHCAM_HOST = get_env_or_default("DASHCAM_HOST", "192.168.197.55");
+    // const string DASHCAM_HOST = get_env_or_default("DASHCAM_HOST", "192.168.0.10");
+    const string DASHCAM_HOST = get_env_or_default("DASHCAM_HOST", "192.168.197.55");
     const string DASHCAM_PORT = get_env_or_default("DASHCAM_PORT", "5000");
 }
 

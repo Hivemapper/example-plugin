@@ -1,7 +1,7 @@
-/* Template for Here Plugin */
+/* Template for Example Plugin */
 
-#ifndef HEREPLUGIN_H
-#define HEREPLUGIN_H
+#ifndef ExamplePlugin_H
+#define ExamplePlugin_H
 
 #include <iostream>
 #include <string>
@@ -14,4 +14,4 @@
 #include "PositionApi.h"
 #include "LandmarksApi.h"
 
-#endif // HEREPLUGIN_H
+#endif // ExamplePlugin_H

@@ -15,4 +15,4 @@ if [ "$TEST_MODE" == "1" ]; then
 fi
 
 echo "Starting main C++ application..."
-exec /usr/src/app/build/src/HerePlugin
+exec /usr/src/app/build/src/ExamplePlugin
