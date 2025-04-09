@@ -1,6 +1,6 @@
-/* Template for Here Plugin */
+/* Template for Example Plugin */
 
-#include "HerePlugin.h"
+#include "ExamplePlugin.h"
 
 using namespace std;
 

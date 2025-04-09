@@ -1,7 +1,7 @@
 
 #include <string>
 
-#include "LandmarksApi.h"
+#include "hivecpp/LandmarksApi.h"
 
 using namespace std;
 

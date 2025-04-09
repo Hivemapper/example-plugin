@@ -1,6 +1,6 @@
 /* File API */
 
-#include "FileApi.h"
+#include "hivecpp/FileApi.h"
 
 bool delete_file(const std::string& fileName) {
     CURL* curl = curl_easy_init();
