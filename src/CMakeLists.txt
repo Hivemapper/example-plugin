@@ -10,7 +10,7 @@ add_executable(ExamplePlugin
 target_include_directories(ExamplePlugin PRIVATE
     ${PROJECT_SOURCE_DIR}/include
     ${PROJECT_SOURCE_DIR}/lib
-    ${CMAKE_CURRENT_SOURCE_DIR}/lib/hive-cpp/include
+    ${PROJECT_SOURCE_DIR}/lib/hive-cpp/include
     ${EIGEN3_INCLUDE_DIR}
 )
 

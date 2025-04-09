@@ -9,9 +9,8 @@
 #include <thread>
 
 #include <Eigen/Dense>
-
-#include "FileApi.h"
-#include "PositionApi.h"
-#include "LandmarksApi.h"
+#include <hivecpp/FileApi.h>
+#include <hivecpp/PositionApi.h>
+#include <hivecpp/LandmarksApi.h>
 
 #endif // ExamplePlugin_H
