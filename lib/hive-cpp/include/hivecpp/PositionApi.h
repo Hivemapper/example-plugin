@@ -11,8 +11,6 @@
 
 #include "hivecpp/Utils.h"
 
-using namespace std;
-
 /* @brief Get the latest position
 *
 *   Will return empty JSON object if no position is available yet

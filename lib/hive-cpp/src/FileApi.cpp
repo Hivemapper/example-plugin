@@ -21,7 +21,7 @@ bool delete_file(const std::string& fileName) {
     CURLcode res = curl_easy_perform(curl);
     curl_easy_cleanup(curl);
 
-    cout << endl;
+    std::cout << std::endl;
 
     return (res == CURLE_OK);
 }
@@ -38,7 +38,7 @@ bool purge_cache() {
     CURLcode res = curl_easy_perform(curl);
     curl_easy_cleanup(curl);
 
-    cout << endl;
+    std::cout << std::endl;
 
 
     return (res == CURLE_OK);

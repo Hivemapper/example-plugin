@@ -2,17 +2,15 @@
 
 #include "hivecpp/Utils.h"
 
-using namespace std;
-
-string get_env_or_default(const char* env_var, const string& default_value) {
+std::string get_env_or_default(const char* env_var, const std::string& default_value) {
     const char* value = std::getenv(env_var);
-    return (value == nullptr) ? default_value : string(value);
+    return (value == nullptr) ? default_value : std::string(value);
 }
 
 namespace dashcam {
-    const string DASHCAM_HOST = get_env_or_default("DASHCAM_HOST", "192.168.0.10");
-    // const string DASHCAM_HOST = get_env_or_default("DASHCAM_HOST", "192.168.197.55");
-    const string DASHCAM_PORT = get_env_or_default("DASHCAM_PORT", "5000");
+    const std::string DASHCAM_HOST = get_env_or_default("DASHCAM_HOST", "192.168.0.10");
+    // const std::string DASHCAM_HOST = get_env_or_default("DASHCAM_HOST", "192.168.197.55");
+    const std::string DASHCAM_PORT = get_env_or_default("DASHCAM_PORT", "5000");
 }
 
 // Helper for writing curl response into a string

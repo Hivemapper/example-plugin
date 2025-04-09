@@ -10,14 +10,12 @@
 #include <curl/curl.h>
 #include <nlohmann/json.hpp>
 
-using namespace std;
-
 // get environment variable or default value
-string get_env_or_default(const char* env_var, const string& default_value);
+std::string get_env_or_default(const char* env_var, const std::string& default_value);
 
 namespace dashcam {
-    extern const string DASHCAM_HOST;
-    extern const string DASHCAM_PORT;
+    extern const std::string DASHCAM_HOST;
+    extern const std::string DASHCAM_PORT;
 }
 
 // Helper for writing curl response into a string

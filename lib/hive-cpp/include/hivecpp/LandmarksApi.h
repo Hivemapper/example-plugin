@@ -10,8 +10,6 @@
 
 #include "hivecpp/Utils.h"
 
-using namespace std;
-
 /* @brief Get the latest landmark
 *
 *   Retrieves the latest (last inserted) observations and landmarks by their rowid.

@@ -12,8 +12,6 @@
 
 #include "hivecpp/Utils.h"
 
-using namespace std;
-
 bool delete_file(const std::string& fileName);
 
 bool purge_cache();

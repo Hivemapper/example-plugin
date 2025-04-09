@@ -3,9 +3,6 @@
 
 #include "hivecpp/LandmarksApi.h"
 
-using namespace std;
-
-
 
 /* @brief Get the latest landmark
 *
@@ -14,8 +11,8 @@ using namespace std;
 *   @return A JSON object containing the latest landmark data.
 */
 nlohmann::json get_latest_landmark(){
-    string landmarks_url = "http://" + dashcam::DASHCAM_HOST + ":" + dashcam::DASHCAM_PORT + "/api/1/landmarks";
-    string request = landmarks_url + "/latest";
+    std::string landmarks_url = "http://" + dashcam::DASHCAM_HOST + ":" + dashcam::DASHCAM_PORT + "/api/1/landmarks";
+    std::string request = landmarks_url + "/latest";
     return get_json_from_url(request);
 }
 
@@ -28,8 +25,8 @@ nlohmann::json get_latest_landmark(){
 *   @return A JSON object containing the last n landmarks.
 */
 nlohmann::json get_last_n_landmarks(int n){
-    string landmarks_url = "http://" + dashcam::DASHCAM_HOST + ":" + dashcam::DASHCAM_PORT + "/api/1/landmarks";
-    string request = landmarks_url + "/last/" + to_string(n);
+    std::string landmarks_url = "http://" + dashcam::DASHCAM_HOST + ":" + dashcam::DASHCAM_PORT + "/api/1/landmarks";
+    std::string request = landmarks_url + "/last/" + std::to_string(n);
     return get_json_from_url(request);
 }
 
@@ -43,16 +40,16 @@ nlohmann::json get_last_n_landmarks(int n){
 *   @return A JSON object containing the landmark data.
 */
 nlohmann::json get_landmarks_by_timestamp(long since_timestamp, long until_timestamp){
-    string landmarks_url = "http://" + dashcam::DASHCAM_HOST + ":" + dashcam::DASHCAM_PORT + "/api/1/landmarks";
-    string request = landmarks_url;
+    std::string landmarks_url = "http://" + dashcam::DASHCAM_HOST + ":" + dashcam::DASHCAM_PORT + "/api/1/landmarks";
+    std::string request = landmarks_url;
     if (since_timestamp != -1){
-        request += "?since=" + to_string(since_timestamp);
+        request += "?since=" + std::to_string(since_timestamp);
     }
     if (since_timestamp != -1 && until_timestamp != -1){
-        request += "&until=" + to_string(until_timestamp);
+        request += "&until=" + std::to_string(until_timestamp);
     }
     else if (until_timestamp != -1){
-        request += "?until=" + to_string(until_timestamp);
+        request += "?until=" + std::to_string(until_timestamp);
     }
     return get_json_from_url(request);
 }
@@ -67,7 +64,7 @@ nlohmann::json get_landmarks_by_timestamp(long since_timestamp, long until_times
 *   @return A JSON object containing the landmark data.
 */
 nlohmann::json get_landmarks_after_id(long id){
-    string landmarks_url = "http://" + dashcam::DASHCAM_HOST + ":" + dashcam::DASHCAM_PORT + "/api/1/landmarks";
-    string request = landmarks_url + "/" + to_string(id);
+    std::string landmarks_url = "http://" + dashcam::DASHCAM_HOST + ":" + dashcam::DASHCAM_PORT + "/api/1/landmarks";
+    std::string request = landmarks_url + "/" + std::to_string(id);
     return get_json_from_url(request);
 }
