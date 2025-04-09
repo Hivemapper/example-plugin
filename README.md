@@ -103,6 +103,12 @@ To inspect the container’s state, you can override the entrypoint temporarily:
 docker run -it --entrypoint bash here-plugin
 ```
 
+The python test server and plugin will not run automatically with this command. You will need to run them manually
+
+```bash
+root@9857a99e67b0:/usr/src/app# TEST_MODE=1 bash entrypoint.sh
+```
+
 #### Test the Server Manually
 
 Inside the container (or from your host if ports are mapped), run:
