@@ -57,6 +57,27 @@ int main(int argc, char *argv[]) {
         nlohmann::json landmarks_7 = get_landmarks_after_id(597);
         cout << "landmarks_7 size: " << landmarks_7.size() << endl;
 
+
+        // FILE API EXAMPLES
+        cout << "==================== FILE API EXAMPLES ====================" << endl;
+        cout << "8) post file" << endl;
+        std::string content = "Hello, World.";
+        // bool post_file_result = post_file("test.txt", content);
+        // cout << "post_file_result: " << post_file_result << endl;
+
+        cout << "9) post file with directory prefix" << endl;
+        std::string content2 = R"({"message": "Hello, World!"})";
+        // bool post_dir_file_result = post_file("/map1/map1.txt", content2);
+        // cout << "post_dir_file_result: " << post_dir_file_result << endl;
+
+        cout << "10) delete file" << endl;
+        bool delete_file_result = delete_file("test.txt");
+        cout << "delete_file_result: " << delete_file_result << endl;
+
+        cout << "11) purge cache" << endl;
+        bool purge_cache_result = purge_cache();
+        cout << "purge_cache_result: " << purge_cache_result << endl;
+
         cout << "==============================================================" << endl;
         counter++;
         this_thread::sleep_for(chrono::seconds(5));

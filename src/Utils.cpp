@@ -48,8 +48,6 @@ nlohmann::json get_json_from_url(const std::string& url) {
         throw std::runtime_error("Failed to initialize CURL");
     }
 
-    // cout << "Downloaded JSON data: " << readBuffer << endl;
-
     return nlohmann::json::parse(readBuffer);
 }
 

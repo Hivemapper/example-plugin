@@ -15,7 +15,10 @@ nlohmann::json get_latest_position(){
     string postion_url = "http://" + dashcam::DASHCAM_HOST + ":" + dashcam::DASHCAM_PORT + "/api/1/gnssConcise";
     string request = postion_url + "/latestValid";
     nlohmann::json position = get_json_from_url(request);
-    position["unix_timestamp"] = utc_to_unix_timestamp(position["utc_time"]);
+    // check if "utc_time" key exists
+    if (position.find("utc_time") != position.end()) {
+        position["unix_timestamp"] = utc_to_unix_timestamp(position["utc_time"]);
+    }
     return position;
 }
 
