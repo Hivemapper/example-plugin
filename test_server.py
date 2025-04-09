@@ -11,6 +11,17 @@ landmarks_data = [
     {"id": 599, "class_label": "Landmark E", "lat": 55.55, "lon": 66.66, "ts": 1672531201 },
 ]
 
+position_data = {
+    "altitude":15.891,
+    "cno":39,
+    "heading":297.11066000000005,
+    "id":858894,
+    "latitude":37.7880956,
+    "longitude":-122.3992437,
+    "speed":0.029583653435111046,
+    "utc_time":"2025-04-08 23:07:52.750329"
+}
+
 info_data = {
     "ssid": "test_ssid",
     "api_version": "v1.0-test"
@@ -50,6 +61,12 @@ def get_landmarks_after_id(id):
 @app.route('/api/1/info/', methods=['GET'])
 def get_info():
     return jsonify(info_data)
+
+@app.route('/api/1/gnssConcise/latestValid', methods=['GET'])
+def get_latest_position():
+    if position_data:
+        return jsonify(position_data)
+    return jsonify({})
 
 if __name__ == '__main__':
     host = os.environ.get('DASHCAM_HOST', '0.0.0.0')

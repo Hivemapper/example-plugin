@@ -22,4 +22,13 @@ using namespace std;
 */
 nlohmann::json get_latest_position();
 
+/* @brief Convert UTC timestamp to Unix timestamp
+*
+*   Converts a UTC timestamp string to a Unix timestamp in microseconds.
+*
+*   @param timestamp_str The UTC timestamp string to convert.
+*   @return The Unix timestamp in microseconds.
+*/
+long utc_to_unix_timestamp(const std::string& timestamp_str);
+
 #endif // POSITION_API_H

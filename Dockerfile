@@ -16,7 +16,7 @@ RUN apt-get update && \
 RUN pip3 install flask
 WORKDIR /usr/src/app
 COPY . /usr/src/app
-RUN mkdir build && cd build && cmake .. && make
+RUN rm -rf build && mkdir -p build && cd build && cmake .. && make
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
