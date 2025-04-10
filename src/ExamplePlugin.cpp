@@ -58,21 +58,33 @@ int main(int argc, char *argv[]) {
 
         // FILE API EXAMPLES
         std::cout << "==================== FILE API EXAMPLES ====================" << std::endl;
-        std::cout << "8) post file" << std::endl;
-        std::string content = "Hello, World.";
-        // bool post_file_result = post_file("test.txt", content);
-        // std::cout << "post_file_result: " << post_file_result << std::endl;
+        std::cout << "1) post file" << std::endl;
+        std::string content = R"({"message": "Hello, World."})";
+        bool post_file_result = post_json_file("test.txt", content);
+        std::cout << "post file success: " << std::boolalpha << post_file_result << std::endl;
 
-        std::cout << "9) post file with directory prefix" << std::endl;
-        std::string content2 = R"({"message": "Hello, World!"})";
-        // bool post_dir_file_result = post_file("/map1/map1.txt", content2);
-        // std::cout << "post_dir_file_result: " << post_dir_file_result << std::endl;
+        std::cout << "2) post file with directory prefix" << std::endl;
+        std::string content2 = landmarks_2.dump();
+        bool post_dir_file_result = post_json_file("/map1/map1.txt", content2);
+        std::cout << "post file with directory prefix succcess: " << std::boolalpha << post_dir_file_result << std::endl;
 
-        std::cout << "10) delete file" << std::endl;
+        std::cout << "3) list cached files" << std::endl;
+        nlohmann::json list_files_result = list_cached_files();
+        std::cout << list_files_result << std::endl;
+
+        std::cout << "4) check if test.txt file exists" << std::endl;
+        bool check_file_result = check_file_exists("test.txt");
+        std::cout << "test.txt file exists: " << std::boolalpha << check_file_result << std::endl;
+
+        std::cout << "5) check if imaginary.txt file exists" << std::endl;
+        bool check_file_result2 = check_file_exists("imaginary.txt");
+        std::cout << "imaginary.txt file exists: " << std::boolalpha << check_file_result2 << std::endl;
+
+        std::cout << "6) delete file" << std::endl;
         bool delete_file_result = delete_file("test.txt");
-        std::cout << "delete_file_result: " << delete_file_result << std::endl;
+        std::cout << "delete file success: " << delete_file_result << std::endl;
 
-        std::cout << "11) purge cache" << std::endl;
+        std::cout << "7) purge cache" << std::endl;
         bool purge_cache_result = purge_cache();
         std::cout << "purge_cache_result: " << purge_cache_result << std::endl;
 

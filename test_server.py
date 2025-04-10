@@ -68,6 +68,27 @@ def get_latest_position():
         return jsonify(position_data)
     return jsonify({})
 
+@app.route('/api/1/file/', methods=['POST'])
+def upload_file():
+    return jsonify({ "message": 'File created successfully.' }), 200
+
+@app.route('/api/1/file/', methods=['DELETE'])
+def delete_file():
+    return jsonify({ "message": 'File created successfully.' }), 200
+
+@app.route('/api/1/file/purge', methods=['GET'])
+def purge_cache():
+    return jsonify({ "message": 'Plugin cache directory purged successfully.' }), 200
+
+@app.route('/api/1/file/exists/', methods=['GET'])
+def file_exists():
+    return jsonify({"exists": True})
+
+@app.route('/api/1/file/list', methods=['GET'])
+def list_files():
+    return jsonify({"files": ["map1/map1.txt", "test.txt"]})
+
+
 if __name__ == '__main__':
     host = os.environ.get('DASHCAM_HOST', '0.0.0.0')
     port = int(os.environ.get('DASHCAM_PORT', 5000))
