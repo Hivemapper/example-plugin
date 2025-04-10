@@ -7,5 +7,4 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
-add_subdirectory(lib/hive-cpp)
 add_subdirectory(src)
