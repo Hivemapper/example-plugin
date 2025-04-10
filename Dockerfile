@@ -10,8 +10,17 @@ RUN apt-get update && \
         libcurl4-openssl-dev \
         python3 \
         python3-pip \
-        netcat && \
-    rm -rf /var/lib/apt/lists/*
+        netcat \
+        git \
+        build-essential \
+        cmake \
+        && rm -rf /var/lib/apt/lists/*
+
+
+WORKDIR /app
+RUN git clone https://github.com/Hivemapper/hive-cpp.git
+WORKDIR /app/hive-cpp
+RUN rm -rf build && mkdir -p build && cd build && cmake .. && make && make install
 
 RUN pip3 install flask
 WORKDIR /usr/src/app
