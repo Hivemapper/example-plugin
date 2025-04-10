@@ -4,11 +4,11 @@ from flask import Flask, jsonify, request
 app = Flask(__name__)
 
 landmarks_data = [
-    {"id": 595, "class_label": "Landmark A", "lat": 12.34, "lon": 56.78, "ts": 1744153669000 },
-    {"id": 596, "class_label": "Landmark B", "lat": 87.65, "lon": 43.21, "ts": 1744153670000 },
-    {"id": 597, "class_label": "Landmark C", "lat": 11.11, "lon": 22.22, "ts": 1744153670000 },
-    {"id": 598, "class_label": "Landmark D", "lat": 33.33, "lon": 44.44, "ts": 1744153671000 },
-    {"id": 599, "class_label": "Landmark E", "lat": 55.55, "lon": 66.66, "ts": 1744153672000 },
+    {"id": 595, "class_label": "stop-sign", "lat": 12.34, "lon": 56.78, "ts": 1744153669000 },
+    {"id": 596, "class_label": "traffic-light", "lat": 87.65, "lon": 43.21, "ts": 1744153670000 },
+    {"id": 597, "class_label": "turn-restriction", "lat": 11.11, "lon": 22.22, "ts": 1744153670000 },
+    {"id": 598, "class_label": "stop-sign", "lat": 33.33, "lon": 44.44, "ts": 1744153671000 },
+    {"id": 599, "class_label": "traffic-light", "lat": 55.55, "lon": 66.66, "ts": 1744153672000 },
 ]
 
 position_data = {
