@@ -88,6 +88,32 @@ int main(int argc, char *argv[]) {
         bool purge_cache_result = purge_cache();
         std::cout << "purge_cache_result: " << purge_cache_result << std::endl;
 
+        // NETWORK REQUEST EXAMPLES
+        std::cout << "==================== NETWORK INTERFACE EXAMPLES ====================" << std::endl;
+
+        // Convert 5 last landmarks JSON to a string for posting.
+        std::string postBody = landmarks_2.dump();
+
+        nlohmann::json targetHeaders;
+        targetHeaders["Content-Type"] = "application/json";
+
+        std::string postUrl = "http://httpbin.org/post";
+
+        std::cout << "1) Posting landmarks to " << postUrl << std::endl;
+        std::string response = fetch(postUrl, "POST", postBody, targetHeaders);
+
+        try {
+            auto respJson = nlohmann::json::parse(response);
+            if (respJson.contains("json") && respJson["json"] == landmarks_2) {
+                std::cout << "Landmarks posted successfully (verified by echoed response)." << std::endl;
+            } else {
+                std::cout << "POST response received, but it did not match the sent landmarks." << std::endl;
+            }
+        }
+        catch (std::exception &ex) {
+            std::cerr << "Error parsing response JSON: " << ex.what() << std::endl;
+        }
+
         std::cout << "==============================================================" << std::endl;
         counter++;
         std::this_thread::sleep_for(std::chrono::seconds(5));

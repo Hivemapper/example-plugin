@@ -10,6 +10,7 @@
 
 #include <Eigen/Dense>
 #include <hivecpp/FileApi.h>
+#include "hivecpp/NetworkApi.h"
 #include <hivecpp/PositionApi.h>
 #include <hivecpp/LandmarksApi.h>
 
