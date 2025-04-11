@@ -1,7 +1,6 @@
 /* Template for Example Plugin */
 
 #include "ExamplePlugin.h"
-#include "hivecpp/Network.h"
 
 int main(int argc, char *argv[]) {
 
@@ -100,7 +99,7 @@ int main(int argc, char *argv[]) {
 
         std::string postUrl = "http://httpbin.org/post";
 
-        std::cout << "Posting landmarks to " << postUrl << std::endl;
+        std::cout << "1) Posting landmarks to " << postUrl << std::endl;
         std::string response = fetch(postUrl, "POST", postBody, targetHeaders);
 
         try {
