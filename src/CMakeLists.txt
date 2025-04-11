@@ -5,7 +5,7 @@ find_package (Eigen3 3.3 REQUIRED NO_MODULE)
 find_package(CURL REQUIRED)
 
 if(NOT CMAKE_SYSROOT OR CMAKE_SYSROOT STREQUAL "")
-    set(CMAKE_SYSROOT "/")
+    set(CMAKE_SYSROOT "")
     message(STATUS "CMAKE_SYSROOT was empty, defaulting to root: ${CMAKE_SYSROOT}")
 else()
     message(STATUS "CMAKE_SYSROOT is: ${CMAKE_SYSROOT}")
