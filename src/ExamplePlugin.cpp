@@ -99,11 +99,14 @@ int main(int argc, char *argv[]) {
 
         std::string postUrl = "http://httpbin.org/post";
 
-        std::cout << "1) Posting landmarks to " << postUrl << std::endl;
-        std::string response = fetch(postUrl, "POST", postBody, targetHeaders);
+        std::cout << "Posting landmarks to " << postUrl << " through network interface" << std::endl;
+        // Use fetch() from NetworkApi which returns an HttpResponse structure
+        HttpResponse httpResponse = fetch(postUrl, "POST", postBody, targetHeaders);
+
+        std::cout << "HTTP Status Code: " << httpResponse.statusCode << std::endl;
 
         try {
-            auto respJson = nlohmann::json::parse(response);
+            auto respJson = nlohmann::json::parse(httpResponse.body);
             if (respJson.contains("json") && respJson["json"] == landmarks_2) {
                 std::cout << "Landmarks posted successfully (verified by echoed response)." << std::endl;
             } else {
