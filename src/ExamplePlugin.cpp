@@ -117,6 +117,7 @@ int main(int argc, char *argv[]) {
         }
         catch (std::exception &ex) {
             std::cerr << "Error parsing response JSON: " << ex.what() << std::endl;
+            std::cout << "JSON with error: " << httpResponse.body << std::endl;
         }
 
         std::cout << "==============================================================" << std::endl;
