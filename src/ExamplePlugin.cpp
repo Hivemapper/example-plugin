@@ -109,7 +109,9 @@ int main(int argc, char *argv[]) {
             auto respJson = nlohmann::json::parse(httpResponse.body);
             if (respJson.contains("json") && respJson["json"] == landmarks_2) {
                 std::cout << "Landmarks posted successfully (verified by echoed response)." << std::endl;
-            } else {
+            } else if (httpResponse.statusCode == 0)  {
+                std::cout << "No response received. Check internet connection." << std::endl;
+            } else  {
                 std::cout << "POST response received, but it did not match the sent landmarks." << std::endl;
             }
         }
