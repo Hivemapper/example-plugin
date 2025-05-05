@@ -154,5 +154,5 @@ The `test_server.py` script (built using Flask) provides the following endpoints
 Cross compilation for aarch64 can be performed by building within a docker image and then copying the executable over onto the Bee dashcam manually.
 
 1. Compile by running the script `/example-plugin/cross-compile/docker_cross_compile.sh`. This scipt will copy the executable into the local directory as `/example-plugin/cross-compile/ExamplePlugin`.
-2. Copy the `ExamplePlugin` executable created by the docker container onto the dashcam with `scp`. E.g. `scp -o StrictHostKeyChecking=no /example-plugin/cross-compile/ExamplePlugin root@192.168.0.10:/data/
+2. Copy the `ExamplePlugin` executable created by the docker container onto the dashcam with `scp`. E.g. `scp -o StrictHostKeyChecking=no /example-plugin/cross-compile/ExamplePlugin root@192.168.0.10:/data/`
 3. ssh onto the dashcam and run the executable manually: `./data/ExamplePlugin`
