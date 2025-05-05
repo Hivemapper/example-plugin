@@ -81,7 +81,16 @@ RUN autoreconf -fi && \
 WORKDIR /app
 RUN git clone https://github.com/Hivemapper/hive-cpp.git
 WORKDIR /app/hive-cpp
-RUN rm -rf build && mkdir -p build && cd build && cmake .. && make && make install
+RUN rm -rf build && mkdir -p build && cd build && \
+    cmake .. \
+        -DCMAKE_SYSTEM_NAME=Linux \
+        -DCMAKE_SYSTEM_PROCESSOR=aarch64 \
+        -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc \
+        -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ \
+        -DCMAKE_INSTALL_PREFIX=/usr/aarch64-linux-gnu \
+        -DCURL_INCLUDE_DIR=/opt/curl-aarch64/include \
+        -DCURL_LIBRARY=/opt/curl-aarch64/lib/libcurl.a \
+    && make -j$(nproc) && make install
 
 # Copy over example-plugin
 WORKDIR /app
