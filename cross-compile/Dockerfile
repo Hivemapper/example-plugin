@@ -53,6 +53,16 @@ RUN git clone -b v3.21.12 --depth 1 https://github.com/protocolbuffers/protobuf.
     make install && \
     ldconfig
 
+# Build zlib for aarch64
+WORKDIR /opt
+RUN wget https://zlib.net/zlib-1.3.1.tar.gz && \
+    tar -xzf zlib-1.3.1.tar.gz && \
+    cd zlib-1.3.1 && \
+    CC=aarch64-linux-gnu-gcc ./configure --prefix=/opt/zlib-aarch64 && \
+    make -j$(nproc) && \
+    make install
+
+
 # Build libcurl for aarch64
 WORKDIR /opt
 RUN git clone --depth 1 --branch curl-7_76_1 https://github.com/curl/curl.git
@@ -63,6 +73,7 @@ RUN autoreconf -fi && \
       --prefix=/opt/curl-aarch64 \
       --disable-shared \
       --enable-static \
+      --with-zlib=/opt/zlib-aarch64 \
       --without-ssl && \
     make -j$(nproc) && \
     make install
@@ -75,8 +86,10 @@ RUN rm -rf build && mkdir -p build && cd build && cmake .. && make && make insta
 # Copy over example-plugin
 WORKDIR /app
 COPY . /app/example-plugin
-# Modify CMakeLists.txt to include pthread and dl
-RUN sed -i '/target_link_libraries(ExamplePlugin/,/)/ s/)/    pthread\n    dl\n)/' /app/example-plugin/src/CMakeLists.txt
+# Modify CMakeLists.txt to include pthread and dl and zlib
+RUN sed -i '/find_package(CURL REQUIRED)/a find_package(ZLIB REQUIRED)' /app/example-plugin/src/CMakeLists.txt
+RUN sed -i '/target_include_directories(ExamplePlugin PRIVATE/,/)/ s/)/    ${ZLIB_INCLUDE_DIRS}\n)/' /app/example-plugin/src/CMakeLists.txt
+RUN sed -i '/target_link_libraries(ExamplePlugin/,/)/ s/)/    pthread\n    dl\n    ${ZLIB_LIBRARIES}\n)/' /app/example-plugin/src/CMakeLists.txt
 RUN cat /app/example-plugin/src/CMakeLists.txt
 # add in docker compile message for transperancy
 RUN sed -i '/int counter = 0;/a\    std::cout << "+++++ CROSS COMPILED IN DOCKER +++++" << std::endl;' /app/example-plugin/src/ExamplePlugin.cpp
@@ -90,11 +103,11 @@ RUN cmake .. \
     -DCMAKE_SYSTEM_PROCESSOR=aarch64 \
     -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc \
     -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ \
-    -DProtobuf_INCLUDE_DIR=/opt/protobuf-aarch64/include \
-    -DProtobuf_LIBRARY=/opt/protobuf-aarch64/lib/libprotobuf.a \
-    -DCURL_INCLUDE_DIR=/opt/libcurl-aarch64/include \
-    -DCURL_LIBRARY=/opt/libcurl-aarch64/lib/libcurl.a \
-    -DCMAKE_EXE_LINKER_FLAGS="-lpthread -ldl" \
+    -DCURL_INCLUDE_DIR=/opt/curl-aarch64/include \
+    -DCURL_LIBRARY=/opt/curl-aarch64/lib/libcurl.a \
+    -DZLIB_LIBRARY=/opt/zlib-aarch64/lib/libz.a \
+    -DZLIB_INCLUDE_DIR=/opt/zlib-aarch64/include \
+    -DCMAKE_EXE_LINKER_FLAGS="-lpthread -ldl /opt/zlib-aarch64/lib/libz.a" \
     -DCMAKE_CXX_FLAGS="-lpthread -ldl" \
     && make -j$(nproc)
 
