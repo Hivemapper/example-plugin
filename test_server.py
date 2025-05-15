@@ -27,8 +27,10 @@ info_data = {
 @app.route('/api/1/landmarks/latest', methods=['GET'])
 def get_latest_landmark():
     if landmarks_data:
-        return {"latest_landmark" : jsonify(landmarks_data[-1]),
-                "latest_observation" : jsonify(landmarks_data[-1])}
+        return jsonify({
+            "last_landmark": landmarks_data[-1],
+            "last_observation": landmarks_data[-1]
+        })
     return jsonify({})
 
 @app.route('/api/1/landmarks/last/<int:n>', methods=['GET'])
@@ -67,7 +69,7 @@ def get_latest_position():
     return jsonify({})
 
 @app.route('/api/1/gnssConcise/locationsBetweenUtcTime', methods=['GET'])
-def get_latest_position():
+def get_positions_between_utc_time():
     if position_data:
         return jsonify(position_data)
     return jsonify({})
