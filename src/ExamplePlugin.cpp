@@ -16,6 +16,14 @@ int main(int argc, char *argv[]) {
         nlohmann::json postion_1 = get_latest_position();
         std::cout << "position_1: " << postion_1 << std::endl;
 
+        // get_position_around_landmark
+        nlohmann::json last_landmark = get_latest_landmark();
+        if (last_landmark.contains("last_observation") && last_landmark["last_observation"].contains("ts"))
+            std::cout << "2) get position around landmark" << std::endl;
+            // get timestamp from the last observation
+            long landmark_timestamp = last_landmark["last_observation"]["ts"];
+            nlohmann::json position_around_landmark = get_positions_near_unix_timestamp(landmark_timestamp, 1);
+            std::cout << "position_around_landmark: " << position_around_landmark << std::endl;
 
         // LANDMARKS API EXAMPLES
         std::cout << "==================== LANDMARKS API EXAMPLES ====================" << std::endl;
