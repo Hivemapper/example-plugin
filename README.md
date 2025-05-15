@@ -146,7 +146,7 @@ The `test_server.py` script (built using Flask) provides the following endpoints
 - `GET /api/1/landmarks/latest`: Returns the latest landmark.
 - `GET /api/1/landmarks/last/<n>`: Returns the last `n` landmarks.
 - `GET /api/1/landmarks`: Returns filtered landmarks with optional query parameters: since and until (unix timestamps)
-- `GET /api/1/landmarks/<id>`: Returns landmarks starting with a given ID.
+- `GET /api/1/landmarks/id/<id>`: Returns landmarks starting with a given ID.
 - `GET /api/1/info/`: Returns general info data.
 
 ## Docker Cross-compile Option
