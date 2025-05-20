@@ -4,19 +4,23 @@ from flask import Flask, jsonify, request
 app = Flask(__name__)
 
 landmarks_data = [
-    {"id": 595, "class_label": "stop-sign", "lat": 12.34, "lon": 56.78, "ts": 1744153669000 },
-    {"id": 596, "class_label": "traffic-light", "lat": 87.65, "lon": 43.21, "ts": 1744153670000 },
-    {"id": 597, "class_label": "turn-restriction", "lat": 11.11, "lon": 22.22, "ts": 1744153670000 },
-    {"id": 598, "class_label": "stop-sign", "lat": 33.33, "lon": 44.44, "ts": 1744153671000 },
-    {"id": 599, "class_label": "traffic-light", "lat": 55.55, "lon": 66.66, "ts": 1744153672000 },
+    {"id": 595, "class_label": "speed-sign", "lat": 12.34, "lon": 56.78, "ts": 1744153669000 },
+    {"id": 596, "class_label": "regulatory-speed-sign", "lat": 87.65, "lon": 43.21, "ts": 1744153670000 },
+    {"id": 597, "class_label": "speed-sign", "lat": 11.11, "lon": 22.22, "ts": 1744153670000 },
+    {"id": 598, "class_label": "speed-sign", "lat": 33.33, "lon": 44.44, "ts": 1744153671000 },
+    {"id": 599, "class_label": "regulatory-speed-sign", "lat": 55.55, "lon": 66.66, "ts": 1744153672000 },
 ]
 
 position_data = {
     "id":858894,
     "latitude":37.7880956,
     "longitude":-122.3992437,
+    "altitude":-16.401,
+    "estimated_speed":7.18377685546875,
     "utc_time":"2025-04-08 23:07:52.750329",
     "unix_timestamp": 1744153672750,
+    "gdop":1.3900000000000001,
+    "hdop":0.67,
 }
 
 info_data = {
