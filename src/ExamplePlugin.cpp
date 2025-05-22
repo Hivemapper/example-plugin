@@ -28,6 +28,14 @@ int main(int argc, char *argv[]) {
             }
         }
 
+        if (last_landmark.contains("last_landmark")){
+            if (last_landmark["last_landmark"].contains("id")){
+                // get position context
+                std::cout << "3) get landmark position context" << std::endl;
+                nlohmann::json position_context = get_landmark_context(last_landmark["last_landmark"]["id"]);
+                std::cout << "position_context: " << position_context << std::endl;
+            }
+        }
         // LANDMARKS API EXAMPLES
         std::cout << "==================== LANDMARKS API EXAMPLES ====================" << std::endl;
 

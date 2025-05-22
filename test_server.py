@@ -21,7 +21,25 @@ position_data = {
     "unix_timestamp": 1744153672750,
     "gdop":1.3900000000000001,
     "hdop":0.67,
+    "eph":3.776,
 }
+
+position_context_data = [
+  {
+    "latitude": 37.6411744198726,
+    "longitude": -122.405861053677,
+    "altitude": -28.0009404761905,
+    "speed": 28.7596985271999,
+    "eph": 0.359
+  },
+  {
+    "latitude": 37.6413001854137,
+    "longitude": -122.405890111928,
+    "altitude": -27.9415021459227,
+    "speed": 28.8591388162114,
+    "eph": 0.358763948497854
+  },
+]
 
 info_data = {
     "ssid": "test_ssid",
@@ -61,6 +79,10 @@ def get_landmarks():
 def get_landmarks_after_id(id):
     filtered = [lm for lm in landmarks_data if lm["id"] >= id]
     return jsonify(filtered)
+
+@app.route('/api/1/landmarks/positionContext/<int:n>', methods=['GET'])
+def get_position_context(n):
+    return jsonify(position_context_data)
 
 @app.route('/api/1/info/', methods=['GET'])
 def get_info():
