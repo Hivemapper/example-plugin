@@ -26,6 +26,7 @@ position_data = {
 
 position_context_data = [
   {
+    "unix_timestamp" : 1745427610345,
     "latitude": 37.6411744198726,
     "longitude": -122.405861053677,
     "altitude": -28.0009404761905,
@@ -33,6 +34,7 @@ position_context_data = [
     "eph": 0.359
   },
   {
+    "unix_timestamp" : 1745427611547,
     "latitude": 37.6413001854137,
     "longitude": -122.405890111928,
     "altitude": -27.9415021459227,
