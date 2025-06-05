@@ -1,0 +1,9 @@
+{
+  "VERSION": 9,
+  "SENSORS_DB_PATH": "/data/recording/redis_handler/sensors-v0-0-5.db",
+  "FUSION_DB_PATH": "/data/recording/redis_handler/fusion-v0-0-9.db",
+  "DATA_LOGGER_DB_PATH": "/data/recording/data-logger.v2.0.0.db",
+  "MAP_AI_DB_PATH": "/data/recording/odc-api.db",
+  "ODC_API_DB_PATH": "/data/recording/odc-api.db",
+  "MODEL_ZOO_DB_PATH": "/data/recording/odc-api.db"
+}
