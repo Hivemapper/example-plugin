@@ -76,7 +76,7 @@ RUN if [ -n "$CACHE_ARCHIVE" ]; then \
         cp -v "$TMP_DIR"/*.log* /data/recording/ && \
         cp -v "$TMP_DIR"/odc-api.db* /data/recording/ && \
         cp -v "$TMP_DIR"/fusion*.db* /data/recording/redis_handler/ && \
-        cp -rv "$TMP_DIR"/landmarks /data/recording/ && \
+        cp -rv "$TMP_DIR"/cached_observations /data/recording/ && \
         rm -rf "$TMP_DIR"; \
     fi
 
