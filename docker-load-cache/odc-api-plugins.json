@@ -1,0 +1,10 @@
+{
+    "plugins": [
+        {
+            "name": "here-plugin",
+            "service": "here-plugin",
+            "executable": "here-plugin",
+            "updatable": true
+        }
+    ]
+}
