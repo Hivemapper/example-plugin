@@ -84,6 +84,7 @@ RUN mkdir -p /opt/dashcam/bin
 COPY config.json /opt/dashcam/bin/
 COPY odc-api-plugins.json /opt/odc-api/
 
-# Set entrypoint to run the Node.js server
-# ENTRYPOINT ["node", "/opt/odc-api/odc-api-bee.js"]
-CMD ["/bin/bash"]
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
+
