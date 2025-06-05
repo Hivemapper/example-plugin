@@ -2,7 +2,7 @@ FROM node:18
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-ARG CACHE_ARCHIVE
+ARG COLLECTION_ARCHIVE
 
 # Install necessary tools: curl, git, tar, build tools, etc.
 RUN apt-get update && apt-get install -y \
@@ -65,13 +65,13 @@ RUN cp -r /app/odc-api/compiled/* /opt/odc-api/
 # Create required directories
 RUN mkdir -p /data/recording/redis_handler
 
-COPY ${CACHE_ARCHIVE} .
-# Copy and extract the cache archive
-RUN if [ -n "$CACHE_ARCHIVE" ]; then \
+COPY ${COLLECTION_ARCHIVE} .
+# Copy and extract the collection archive
+RUN if [ -n "$COLLECTION_ARCHIVE" ]; then \
         TMP_DIR="/tmp/collection_restore" && \
         rm -rf "$TMP_DIR" && \
         mkdir -p "$TMP_DIR" && \
-        tar -xzf "$CACHE_ARCHIVE" -C "$TMP_DIR" && \
+        tar -xzf "$COLLECTION_ARCHIVE" -C "$TMP_DIR" && \
         echo "Archive extracted to $TMP_DIR" && \
         cp -v "$TMP_DIR"/*.log* /data/recording/ && \
         cp -v "$TMP_DIR"/odc-api.db* /data/recording/ && \
