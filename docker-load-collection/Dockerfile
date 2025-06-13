@@ -81,7 +81,8 @@ RUN if [ -n "$COLLECTION_ARCHIVE" ]; then \
     fi
 
 RUN mkdir -p /opt/dashcam/bin
-COPY config.json /opt/dashcam/bin/
+COPY config.json /opt/dashcam/bin/config.json
+COPY config.json /opt/dashcam/bin/db-config.json
 COPY odc-api-plugins.json /opt/odc-api/
 
 COPY entrypoint.sh /entrypoint.sh
